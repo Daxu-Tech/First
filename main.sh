@@ -35,6 +35,17 @@ echo " 1.Permanent Alias"
 echo " 2.Log Monitoring"
 read choice
 
+
+function Scan(){
+        sudo nmap -sS 198.168.1.0/24 -oG scan.txt
+        cat scan.txt | grep Host | cut -d ' ' -f2 | sort -u
+}
+
+echo " What you want to perform ? "
+echo " 1.Permanent Alias"
+echo " 2.Scan a network"
+read choice
+
 case $choice in
 
    1)
@@ -49,8 +60,11 @@ case $choice in
 	LogMonitor
 	;;
 
+   3)
+	Scan
+	;;
+
    *)
 	echo "Error"
-	;;
 
 esac
